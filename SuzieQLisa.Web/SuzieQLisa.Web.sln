@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{22920461-9A29-4F95-8123-631FE066AAAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC307474-E03A-480C-85D1-28FF4CB07DA2}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		NuGet.Config = NuGet.Config
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SuzieQLisa", "src\SuzieQLisa\SuzieQLisa.xproj", "{F3A2E3F7-2088-42C1-A8F2-CF6A01826C9D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3A2E3F7-2088-42C1-A8F2-CF6A01826C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A2E3F7-2088-42C1-A8F2-CF6A01826C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A2E3F7-2088-42C1-A8F2-CF6A01826C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A2E3F7-2088-42C1-A8F2-CF6A01826C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F3A2E3F7-2088-42C1-A8F2-CF6A01826C9D} = {22920461-9A29-4F95-8123-631FE066AAAA}
+	EndGlobalSection
+EndGlobal
