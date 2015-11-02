@@ -144,7 +144,7 @@ publish/
 #!**/packages/repositories.config
 
 # JSPM Packages
-jspm_packages/*
+**/jspm_packages/*
 
 # Windows Azure Build Output
 csx/
