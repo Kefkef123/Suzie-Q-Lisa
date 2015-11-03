@@ -20,7 +20,7 @@ namespace SuzieQLisa
             // Add the platform handler to the request pipeline.
             app.UseIISPlatformHandler();
 
-            app.UseStaticFiles();
+            app.UseFileServer();
         }
     }
 }
