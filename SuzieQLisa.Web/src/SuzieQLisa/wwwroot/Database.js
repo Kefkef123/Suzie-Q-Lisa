@@ -2,7 +2,7 @@
     constructor() {
         this.tables = ["students"]
 
-        this.studentsTable = [
+        var studentsTable = [
             {"id": 1, "name": "Kevin van Hulst", "class": "LPICO15L1", "studentNumber": 99016948},
             {"id": 2, "name": "Rik Pronk", "class": "LPICO15L1", "studentNumber": 99016312},
             {"id": 3, "name": "Pietje van Genderen", "class": "LPICO15L1", "studentNumber": 99045674},
@@ -10,9 +10,17 @@
             {"id": 5, "name": "Willie-Alex van Oranje", "class": "LPICO14L1", "studentNumber": 99034561},
             {"id": 6, "name": "Bjørn Bjørnsson", "class": "LPICO12A3", "studentNumber": 99079864}
         ];
+
+        this.database = {
+            "students": studentsTable
+        }
     }
 
-    getData() {
-        return this.studentsTable;
+    getData(table) {
+        if(this.tables.indexOf(table) === -1){
+            throw "Table doesn't exist";
+        }
+
+        return this.database[table];
     }
 }
