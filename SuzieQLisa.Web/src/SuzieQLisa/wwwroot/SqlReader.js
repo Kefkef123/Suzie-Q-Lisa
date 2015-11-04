@@ -9,6 +9,7 @@ export class SqlReader {
         this.tables = database.tables;
         this.database = database.database;
         this.query = "";
+        this.output = this.database['students'];
     }
 
     readSql() {
@@ -37,10 +38,9 @@ export class SqlReader {
         }
         else {
             var table = queryComponents[3].toLowerCase();
-            var output = this.database[table];
+            this.output = this.database[table];
         }
 
         console.log("success");
-        console.log(output);
     }
 }
