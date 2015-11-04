@@ -8,16 +8,25 @@ export class Sql {
 
     constructor(sqlreader, database) {
         this.sqlreader = sqlreader;
-        this.database = database;
+        this.database = database.database;
 
-        this.output = this.sqlreader.database['students'];
+        this.output = this.database['students'];
     }
 
     changeText(){
         var data = this.sqlreader.readSql();
         
+                this.output = this.database[data.table];
+
         if(typeof(data.columns) === "undefined"){
-            this.output = this.database[data.table];
+            $("td").removeClass("lowlight").addClass("highlight");
+        }
+        else{
+            $("td").removeClass("highlight").addClass("lowlight");
+
+            data.columns.forEach(function(value, index, arr){
+                $("td[data-column=" + value + "]").removeClass("lowlight").addClass("highlight");
+            });
         }
     }
 }
