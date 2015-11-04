@@ -8,4 +8,8 @@ export class Sql {
     constructor(sqlreader) {
         this.sqlreader = sqlreader;
     }
+
+    changeText(){
+        var data = this.sqlreader.readSql();
+    }
 }

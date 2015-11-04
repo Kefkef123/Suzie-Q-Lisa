@@ -9,6 +9,8 @@ export class SqlReader {
         this.tables = database.tables;
         this.database = database.database;
         this.query = "";
+
+        // by default, show the students table
         this.output = this.database['students'];
     }
 
