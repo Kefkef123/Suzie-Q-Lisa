@@ -17,6 +17,7 @@ export class SqlReader {
         try {
             // Executes this.select/insert/update/delete
             this['analyze' + this.query.substring(0, 6).toLowerCase().capitalizeFirstLetter()](this.query);
+            return this['analyze' + this.query.substring(0, 6).toLowerCase().capitalizeFirstLetter()](this.query);
         }
         catch (exception) {
             console.log(exception.message)
@@ -57,5 +58,6 @@ export class SqlReader {
         }
 
         console.log(object);
+        return object;
     }
 }
