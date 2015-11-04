@@ -1,9 +1,16 @@
 ﻿<template>
     <section id="editor">
-        <textarea change.delegate="sqlreader.readSql()"></textarea>
+        <textarea change.delegate="changeText()"></textarea>
     </section>
 
     <section id="output">
-        <table></table>
+        <table>
+            <tr repeat.for="student of output">
+                <td data-column="id">${student.id}</td>
+                <td data-column="name">${student.name}</td>
+                <td data-column="class">${student.class}</td>
+                <td data-column="studentNumber">${student.studentNumber}</td>
+            </tr>
+        </table>
     </section>
 </template>
