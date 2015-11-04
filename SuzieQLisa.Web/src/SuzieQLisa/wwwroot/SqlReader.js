@@ -1,13 +1,5 @@
-﻿import {Database} from 'database';
-
-export class SqlReader {
-    static inject() {
-        return [ Database ];
-    }
-
-    constructor(database) {
-        this.tables = database.tables;
-        this.database = database.database;
+﻿export class SqlReader {
+    constructor() {
         this.query = "";
     }
 
@@ -54,7 +46,6 @@ export class SqlReader {
             object.columns.forEach(function(value, index, arr) {
                 object.columns[index] = value.slice(-1) === ',' ? value.slice(0, -1) : value;
             });
-        }
         }
 
         console.log(object);
