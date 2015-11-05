@@ -36,6 +36,41 @@
 
         object.table = queryComponents[fromClauseIndex + 1];
 
+        // WHERE
+        var whereClauseIndex = queryComponentsLower.indexOf("where");
+        if(whereClauseIndex !== -1 && typeof(queryComponents[whereClauseIndex + 1]) !== "undefined"){
+            if(queryComponentsLower[whereClauseIndex + 1] === "not"){
+                var column = queryComponents[whereClauseIndex + 2];
+                var operator = queryComponents[whereClauseIndex + 3];
+
+                if(operator === "="){
+                    operator = "!=";
+                }
+                else if(operator === "<"){
+                    operator = ">";
+                }
+                else if(operator === ">"){
+                    operator = "<";
+                }
+
+                var value = queryComponents[whereClauseIndex + 4];
+
+                object.condition = column + " " + operator + " " + value;
+            }
+            else{
+                var column = queryComponents[whereClauseIndex + 1];
+                var operator = queryComponents[whereClauseIndex + 2];
+
+                if(operator === "="){
+                    operator = "==";
+                }
+
+                var value = queryComponents[whereClauseIndex + 3];
+
+                object.condition = column + " " + operator + " " + value;
+            }
+        }
+
         // SELECT *
         if (queryComponents[1] !== '*') {
             object.columns = [];

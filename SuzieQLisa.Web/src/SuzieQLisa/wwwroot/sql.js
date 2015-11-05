@@ -16,7 +16,12 @@ export class Sql {
     changeText(){
         var data = this.sqlreader.readSql();
         
-                this.output = this.database[data.table];
+        if(typeof(data.condition) !== "undefined"){
+            this.output = Enumerable.From(this.database[data.table]).Where("$." + data.condition).ToArray();
+        }
+        else{
+            this.output = this.database[data.table];
+        }
 
         if(typeof(data.columns) === "undefined"){
             $("td").removeClass("lowlight").addClass("highlight");
