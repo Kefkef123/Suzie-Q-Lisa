@@ -16,12 +16,16 @@ export class Sql {
             data: this.database['students'] 
         };
     }
-
     updateTableContent() {
         var sqlQueryObject = this.sqlreader.readSql($('section#editor textarea').val());
         var table = {};
-
-        table.data = this.database[sqlQueryObject.tableName]
+        
+        if(typeof(sqlQueryObject.condition) !== "undefined") {
+            table.data = Enumerable.From(this.database[sqlQueryObject.tableName]).Where("$." + sqlQueryObject.condition).ToArray();
+        }
+        else{
+            table.data = this.database[sqlQueryObject.tableName];
+        }
 
         // Get a sample row to read column names from
         var sampleRow = Enumerable.From(table.data).First();
