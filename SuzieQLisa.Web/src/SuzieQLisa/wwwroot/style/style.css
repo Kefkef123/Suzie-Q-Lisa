@@ -10,3 +10,8 @@
 .lowlight{
     background-color: gray;
 }
+
+section#editor textarea {
+    height: 200px;
+    width: 600px;
+}

@@ -5,13 +5,20 @@
 
     <section id="output">
         <table>
-            <tr repeat.for="row of table.data">
-                <td repeat.for="column of $parent.table.columnNames"
-                    class.bind="$parent.$parent.table.columnSelection[column] ? 'highlight' : 'lowlight'"
-                    data-column="${column}">
+            <thead>
+                <tr>
+                    <th repeat.for="column of table.columnNames">${column}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr repeat.for="row of table.data">
+                    <td repeat.for="column of $parent.table.columnNames"
+                        class.bind="$parent.$parent.table.columnSelection[column] ? 'highlight' : 'lowlight'"
+                        data-column="${column}">
                         ${$parent.row[column]}
-                </td>
-            </tr>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </section>
 </template>
