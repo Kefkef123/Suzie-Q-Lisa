@@ -4,11 +4,11 @@
 }
 
 .highlight{
-    background-color: green;
+    background-color: rgba(0, 255, 0, 0.35);
 }
 
 .lowlight{
-    background-color: gray;
+    background-color: rgba(128, 128, 128, 0.35);
 }
 
 section#editor textarea {
