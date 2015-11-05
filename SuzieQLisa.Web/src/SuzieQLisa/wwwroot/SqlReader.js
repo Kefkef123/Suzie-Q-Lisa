@@ -3,8 +3,8 @@
         this.query = "";
     }
 
-    readSql() {
-        this.query = $('section#editor textarea').val();
+    readSql(query) {
+        this.query = query;
 
         try {
             // Executes this.select/insert/update/delete
@@ -34,7 +34,7 @@
             throw {message: "Select from a table"};
         }
 
-        object.table = queryComponents[fromClauseIndex + 1];
+        object.tableName = queryComponents[fromClauseIndex + 1];
 
         // SELECT *
         if (queryComponents[1] !== '*') {
@@ -48,7 +48,6 @@
             });
         }
 
-        console.log(object);
         return object;
     }
 }

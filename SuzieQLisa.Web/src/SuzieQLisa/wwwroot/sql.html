@@ -1,15 +1,16 @@
 ﻿<template>
     <section id="editor">
-        <textarea change.delegate="changeText()"></textarea>
+        <textarea change.delegate="updateTableContent()"></textarea>
     </section>
 
     <section id="output">
         <table>
-            <tr repeat.for="student of output">
-                <td data-column="id">${student.id}</td>
-                <td data-column="name">${student.name}</td>
-                <td data-column="class">${student.class}</td>
-                <td data-column="studentNumber">${student.studentNumber}</td>
+            <tr repeat.for="row of table.data">
+                <td repeat.for="column of $parent.table.columnNames"
+                    class.bind="$parent.$parent.table.columnSelection[column] ? 'highlight' : 'lowlight'"
+                    data-column="${column}">
+                        ${$parent.row[column]}
+                </td>
             </tr>
         </table>
     </section>

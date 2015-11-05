@@ -10,23 +10,42 @@ export class Sql {
         this.sqlreader = sqlreader;
         this.database = database.database;
 
-        this.output = this.database['students'];
+        this.table = { 
+            columnNames: ["id", "name", "class", "studentNumber"], 
+            columnSelection: {"id": true, "name": true, "class": true, "studentNumber": true}, 
+            data: this.database['students'] 
+        };
     }
 
-    changeText(){
-        var data = this.sqlreader.readSql();
-        
-                this.output = this.database[data.table];
+    updateTableContent() {
+        var sqlQueryObject = this.sqlreader.readSql($('section#editor textarea').val());
+        var table = {};
 
-        if(typeof(data.columns) === "undefined"){
-            $("td").removeClass("lowlight").addClass("highlight");
+        table.data = this.database[sqlQueryObject.tableName]
+
+        // Get a sample row to read column names from
+        var sampleRow = Enumerable.From(table.data).First();
+        table.columnNames = [];
+
+        for (var key in sampleRow) {
+            if (sampleRow.hasOwnProperty(key)) {
+                table.columnNames.push(key);
+            }
         }
-        else{
-            $("td").removeClass("highlight").addClass("lowlight");
 
-            data.columns.forEach(function(value, index, arr){
-                $("td[data-column=" + value + "]").removeClass("lowlight").addClass("highlight");
+        table.columnSelection = {};
+        if (typeof(sqlQueryObject.columns) === "undefined")
+        {
+            table.columnNames.forEach(function(value, index, array) {
+                table.columnSelection[value] = true;
             });
         }
+        else {
+            table.columnNames.forEach(function(value, index, array) {
+                table.columnSelection[value] = sqlQueryObject.columns.indexOf(value) !== -1;
+            });
+        }
+
+        this.table = table;
     }
 }

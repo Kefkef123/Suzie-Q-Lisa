@@ -11,8 +11,15 @@
             {"id": 6, "name": "Bjørn Bjørnsson", "class": "LPICO12A3", "studentNumber": 99079864}
         ];
 
+        var classTable = [
+            {"id": 1, "name": "LPICO15L1"},
+            {"id": 2, "name": "LPICO12A3"},
+            {"id": 3, "name": "LPICO14L1"}
+        ];
+
         this.database = {
-            "students": studentsTable
+            "students": studentsTable,
+            "classes": classTable
         }
     }
 
