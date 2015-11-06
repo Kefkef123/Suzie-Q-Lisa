@@ -11,12 +11,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr repeat.for="row of table.data">
-                    <td repeat.for="column of $parent.table.columnNames"
-                        class.bind="$parent.$parent.table.columnSelection[column] ? 'highlight' : 'lowlight'"
-                        data-column="${column}">
-                        ${$parent.row[column]}
-                    </td>
+                <tr repeat.for="row of table.data" 
+                    class.bind="$parent.table.whereSelection[row[$parent.table.keyColumn]] ? 'highlight' : 'lowlight'">
+                        <td repeat.for="column of $parent.table.columnNames"
+                            class.bind="$parent.$parent.table.columnSelection[column] ? 'highlight' : 'lowlight'"
+                            data-column="${column}">
+                                ${$parent.row[column]}
+                        </td>
                 </tr>
             </tbody>
         </table>

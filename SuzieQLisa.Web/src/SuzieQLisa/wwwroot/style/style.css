@@ -3,12 +3,20 @@
     padding: 0;
 }
 
-.highlight{
-    background-color: rgba(0, 255, 0, 0.35);
+tr.highlight {
+    background-color: rgb(108, 255, 108);
 }
 
-.lowlight{
-    background-color: rgba(128, 128, 128, 0.35);
+td.highlight {
+    background-color: rgb(108, 255, 108);
+}
+
+tr.lowlight td {
+    background-color: rgb(211, 211, 211) !important;
+}
+
+td.lowlight {
+    background-color: rgb(211, 211, 211) !important;
 }
 
 section#editor textarea {

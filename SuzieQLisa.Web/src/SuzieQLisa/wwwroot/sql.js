@@ -12,20 +12,18 @@ export class Sql {
 
         this.table = { 
             columnNames: ["id", "name", "class", "studentNumber"], 
+            keyColumn: "id",
             columnSelection: {"id": true, "name": true, "class": true, "studentNumber": true}, 
-            data: this.database['students'] 
+            data: this.database['students'], 
+            whereSelection: {1: true, 2: true, 3: true, 4: true, 5: true, 6: true,}
         };
     }
+
     updateTableContent() {
         var sqlQueryObject = this.sqlreader.readSql($('section#editor textarea').val());
         var table = {};
         
-        if(typeof(sqlQueryObject.condition) !== "undefined") {
-            table.data = Enumerable.From(this.database[sqlQueryObject.tableName]).Where("$." + sqlQueryObject.condition).ToArray();
-        }
-        else{
-            table.data = this.database[sqlQueryObject.tableName];
-        }
+        table.data = this.database[sqlQueryObject.tableName];
 
         // Get a sample row to read column names from
         var sampleRow = Enumerable.From(table.data).First();
@@ -36,6 +34,38 @@ export class Sql {
                 table.columnNames.push(key);
             }
         }
+
+        table.keyColumn = table.columnNames[0];
+
+        table.whereSelection = {};
+        if(typeof(sqlQueryObject.condition) !== "undefined") {
+            // set whereSelection property true for all where-selected rows 
+            Enumerable.From(table.data)
+                .Where("$." + sqlQueryObject.condition)
+                .Select(function(x) { return x[table.keyColumn] })
+                .ForEach(function(x) {
+                    table.whereSelection[x] = true;
+                });
+
+            // Set whereSelection property false for all non-selected rows
+            Enumerable.From(table.data)
+            .Select(function(x) { return x[table.keyColumn] })
+            .ForEach(function(x){
+                if (!table.whereSelection.hasOwnProperty(x)) {
+                    table.whereSelection[x] = false;
+                }
+            });
+        }
+        else {
+            // Simple set all columns true in whereselection since where clause is missing
+            Enumerable.From(table.data)
+            .Select(function(x) { return x[table.keyColumn] })
+            .ForEach(function(x){
+                table.whereSelection[x] = true;
+            });
+        }
+
+        
 
         table.columnSelection = {};
         if (typeof(sqlQueryObject.columns) === "undefined")
